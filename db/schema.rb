@@ -16,6 +16,13 @@ ActiveRecord::Schema.define(version: 2021_03_08_215717) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "phone_number"
+    t.string "address"
+    t.boolean "administrator"
+    t.boolean "tattoo_approved"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
