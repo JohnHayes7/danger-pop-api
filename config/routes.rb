@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tattoo_requests
   resources :products
   resources :vendors
   resources :categories

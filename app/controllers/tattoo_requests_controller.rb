@@ -1,0 +1,2 @@
+class TattooRequestsController < ApplicationController
+end

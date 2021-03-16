@@ -1,0 +1,2 @@
+class TattooRequest < ApplicationRecord
+end
