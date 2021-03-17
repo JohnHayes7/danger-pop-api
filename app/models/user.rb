@@ -5,4 +5,5 @@ class User < ApplicationRecord
     validates :password, presence: true
     has_one :cart
     has_many :tattoo_requests
+    belongs_to :store
 end
