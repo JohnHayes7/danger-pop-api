@@ -1,4 +1,4 @@
 class Vendor < ApplicationRecord
     belongs_to :store
-    has_many :categories
+    has_and_belongs_to_many :categories
 end
