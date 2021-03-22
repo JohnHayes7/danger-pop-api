@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(version: 2021_03_22_185339) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "dimensions_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "dimension_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notes", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
@@ -87,13 +94,6 @@ ActiveRecord::Schema.define(version: 2021_03_22_185339) do
     t.integer "shipping_height"
     t.integer "shipping_weight"
     t.string "image_folder"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "products_dimensions", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "dimension_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
