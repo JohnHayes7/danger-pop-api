@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_181545) do
+ActiveRecord::Schema.define(version: 2021_03_22_182603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,13 @@ ActiveRecord::Schema.define(version: 2021_03_22_181545) do
     t.integer "shipping_height"
     t.integer "shipping_weight"
     t.string "image_folder"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products_sizes", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "size_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
