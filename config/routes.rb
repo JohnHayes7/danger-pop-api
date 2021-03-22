@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :dimensions
+  resources :sizes
   resources :notes
   resources :artists
   resources :appointments
