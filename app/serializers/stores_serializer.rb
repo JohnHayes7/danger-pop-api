@@ -1,4 +1,4 @@
 class StoresSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :name
 end

@@ -1,4 +1,4 @@
 class AppointmentsSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :date, :time, :artist_id, :project_id
 end

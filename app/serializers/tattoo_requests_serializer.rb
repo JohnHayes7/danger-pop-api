@@ -1,4 +1,4 @@
 class TattooRequestsSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :user, :description, :body_location_image_path, :accepted
 end

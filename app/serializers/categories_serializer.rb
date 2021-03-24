@@ -1,4 +1,4 @@
 class CategoriesSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :name, :vendor_id
 end
