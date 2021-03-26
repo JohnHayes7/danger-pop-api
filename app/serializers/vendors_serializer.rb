@@ -1,4 +1,6 @@
 class VendorsSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :contact_name, :contact_phone, :contact_address, :store
+  belongs_to :store
+  has_many :categories
+  attributes :name, :contact_name, :contact_phone, :contact_address, :store, :categories
 end

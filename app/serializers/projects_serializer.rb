@@ -5,5 +5,5 @@ class ProjectsSerializer
   belongs_to :artist
   has_many :appointments
   has_many :project_notes
-  attributes :tattoo_request, :progress_pic_folder, :final_image, :project_complete_status, :title, :user, :artist
+  attributes :title, :progress_pic_folder, :final_image, :project_complete_status, :tattoo_request, :user, :artist, :appointments, :project_notes
 end
