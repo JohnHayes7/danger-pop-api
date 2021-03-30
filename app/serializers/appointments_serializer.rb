@@ -3,6 +3,7 @@ class AppointmentsSerializer
   belongs_to :artist
   belongs_to :project
   has_one :user, through: :project
-  attributes :project, :artist, :user, :date, :time, :artist_id, :project_id
+  has_one :tattoo_request, through: :project
+  attributes :project, :artist, :user, :tattoo_request, :date, :time, :artist_id, :project_id
 
 end
