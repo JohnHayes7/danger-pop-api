@@ -50,6 +50,18 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  Paperclip.options[:command_path] = "/usr/bin/"
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: 's3-us-east-1.amazonaws.com',
+    s3_credentials: {
+       bucket: ENV.fetch('danger-pop-studio-media'),
+       access_key_id: ENV.fetch('AKIAXJHCOCXWFKGJKTFT'),
+       secret_access_key: ENV.fetch('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'),
+       s3_region: ENV.fetch('us-east-1'),
+      }
+    }
+
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
