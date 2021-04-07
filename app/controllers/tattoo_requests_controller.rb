@@ -6,7 +6,6 @@ class TattooRequestsController < ApplicationController
     end
 
     def create
-        binding.pry
         @tr = TattooRequest.new(tattoo_request_params)
 
         if @tr.save
@@ -19,6 +18,6 @@ class TattooRequestsController < ApplicationController
     private
 
     def tattoo_request_params
-        params.permit(:guest_email, :description, :image)
+        params.require(:tattoo_request).permit(:guest_email, :description, :allergies, :body_location_image_path)
     end
 end
