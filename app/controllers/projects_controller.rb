@@ -42,4 +42,10 @@ class ProjectsController < ApplicationController
         end
        
     end
+
+
+    def show
+        proj = Project.find(params[:id])
+        render json: ProjectsSerializer.new(proj)
+    end
 end
