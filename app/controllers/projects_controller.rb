@@ -6,30 +6,54 @@ class ProjectsController < ApplicationController
     end
 
     def create
+        @tr = TattooRequest.find(params[:id])
         if params[:attributes][:accepted]
-            
+            # binding.pry
             # IF THERE IS A USER FIND THE USER
             # IF THERE IS NOT A USER CREATE A USER
             if !params[:attributes][:user]
-                
-                u = User.new()
-                u.email = params[:attributes][:guest_email]
-                u.name = ""
-                u.phone_number = ""
-                u.password = "pass"
-                u.tattoo_approved = true
-                u.save
+                @u = User.find_by(email: params[:attributes][:guest_email])
+                # binding.pry
+                if !@u
+                    # binding.pry
+                    @u = User.new()
+                    @u.email = params[:attributes][:guest_email]
+                    @u.name = ""
+                    @u.phone_number = ""
+                    # NEED TO ASSIGN RANDOM GENTERATED PASS
+                    @u.password = "pass"
+                    @u.tattoo_requests.push(@tr)
+                    @u.tattoo_approved = true
+                    @u.administrator = false
+                    @u.allergies = params[:attributes][:allergies]
+                    @u.save
+                else
+                    @u.tattoo_requests.push(@tr)
+                    @u.tattoo_approved = @u.tattoo_approved || true 
+                    @u.administrator = false
+                    @u.allergies = params[:attributes][:allergies]
+                    @u.save
+                end
             else
-                u = User.find( params[:attributes][:user][:id])
-                u.tattoo_approved = u.tattoo_approved || true
+                @u = User.find(params[:attributes][:user][:id])
+                # binding.pry
+                @u.tattoo_requests.push(@tr)
+                @u.tattoo_approved = @u.tattoo_approved || true
+                @u.administrator = false
+                @u.allergies = params[:attributes][:allergies]
+                @u.save
                 
             end
         
-            if u.save
+            if @u.save
+                
+                
+                @tr.accepted = true
+                @tr.save
                 
                 proj = Project.new()
                 proj.tattoo_request_id = params[:id]
-                proj.user_id = u.id
+                proj.user_id = @u.id
                 proj.save
                 if proj.save
                     render json: ProjectsSerializer.new(proj)
