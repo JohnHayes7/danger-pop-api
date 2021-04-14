@@ -12,6 +12,8 @@ class TattooRequest < ApplicationRecord
       }
 
     validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+    validates :guest_full_name, presence: true
+    validates :guest_phone, presence: true
     validates :guest_email, presence: true
     validates :description, presence: true 
     validates :allergies, presence: true

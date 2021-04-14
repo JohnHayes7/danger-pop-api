@@ -15,11 +15,11 @@ class ProjectsController < ApplicationController
                 @u = User.find_by(email: params[:attributes][:guest_email])
                 # binding.pry
                 if !@u
-                    # binding.pry
+                    binding.pry
                     @u = User.new()
                     @u.email = params[:attributes][:guest_email]
-                    @u.name = ""
-                    @u.phone_number = ""
+                    @u.name = params[:attributes][:guest_full_name]
+                    @u.phone_number = params[:attributes][:guest_phone]
                     # NEED TO ASSIGN RANDOM GENTERATED PASS
                     @u.password = "pass"
                     @u.tattoo_requests.push(@tr)
