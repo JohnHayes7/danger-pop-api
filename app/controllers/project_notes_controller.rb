@@ -7,4 +7,9 @@ class ProjectNotesController < ApplicationController
         pn.save
         
     end
+
+    def destroy
+        pn = ProjectNote.find(params[:id])
+        pn.delete
+    end
 end
