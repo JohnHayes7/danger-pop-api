@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
                 @u = User.find_by(email: params[:attributes][:guest_email])
                 # binding.pry
                 if !@u
-                    binding.pry
+
                     @u = User.new()
                     @u.email = params[:attributes][:guest_email]
                     @u.name = params[:attributes][:guest_full_name]
@@ -46,14 +46,15 @@ class ProjectsController < ApplicationController
             end
         
             if @u.save
-                
-                
                 @tr.accepted = true
                 @tr.save
                 
                 proj = Project.new()
+                
                 proj.tattoo_request_id = params[:id]
                 proj.user_id = @u.id
+                proj.save
+                proj.title = @u.name_combine +"_"+"#{proj.id}"
                 proj.save
                 if proj.save
                     render json: ProjectsSerializer.new(proj)

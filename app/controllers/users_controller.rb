@@ -8,9 +8,8 @@ class UsersController < ApplicationController
 
     def create
         user = User.new(user_params)
-        user.password = params[:password]
         if user.save
-            render json: UserSerializer(user)
+            render json: UserSerializer.new(user)
         else
             render json: {code: 2020, message: "Could Not Create Account.  Please confirm your information"}
         end

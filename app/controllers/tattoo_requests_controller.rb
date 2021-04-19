@@ -8,7 +8,6 @@ class TattooRequestsController < ApplicationController
     def create
        
         @tr = TattooRequest.new(tattoo_request_params)
-        binding.pry
         if @tr.save
             render json: @tr
         else
