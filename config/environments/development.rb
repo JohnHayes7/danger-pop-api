@@ -50,6 +50,8 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
+
   Paperclip.options[:command_path] = "/usr/bin/"
   config.paperclip_defaults = {
     storage: :s3,

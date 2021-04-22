@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     validates :name,  presence: true
     validates :email, presence: true, uniqueness: true
+    # ADD MORE RESTRICTIONS TO PASSWORD
     validates :password, presence: true
     has_one :cart
     has_many :products, through: :cart
