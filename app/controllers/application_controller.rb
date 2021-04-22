@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
 
             rescue => exception
                 render json: {message: "Error #{exception}"}, status: :forbidden
-
+            end
         else
             render json:{message: "No Authorization Header Sent", status: :forbidden}
         end
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::API
         auth_header.split(" ")[1]
     end
 
-    def create_token 
+    def create_token(payload)
         JWT.encode(payload, secret)
     end
 
