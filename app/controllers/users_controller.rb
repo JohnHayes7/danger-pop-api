@@ -32,6 +32,11 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        u = User.find(params[:id])
+        render json: UserSerializer.new(u)
+    end
+
     private
     
     def user_params
