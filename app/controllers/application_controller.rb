@@ -5,13 +5,19 @@ class ApplicationController < ActionController::API
     def authenticate
         # binding.pry
         if request.headers["Authorization"]
+
             begin
+                binding.pry
                 auth_header = request.headers["Authorization"]
-                decoded_token = JWT.decode(token(auth_header), secret)
-                payload = decoded_token.first
-                user_id = payload["user_id"]
-                @user = User.find(user_id)
                 
+                decoded_token = JWT.decode(token(auth_header), secret)
+        
+                payload = decoded_token.first
+                
+                user_id = payload["user_id"]
+                binding.pry
+                @user = User.find(user_id)
+                binding.pry
             rescue => exception
                 render json: {message: "Error #{exception}"}, status: :forbidden
             end

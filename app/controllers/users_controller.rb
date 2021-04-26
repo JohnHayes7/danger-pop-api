@@ -21,6 +21,7 @@ class UsersController < ApplicationController
                 "id": @user.id,
                 "name": @user.name,
                 "email": @user.email,
+                "phone_number": @user.phone_number,
                 "token": token
             }
             # options = {include: [token]}
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
 
     def show
         u = User.find(params[:id])
+        
         render json: UserSerializer.new(u)
     end
 
