@@ -24,12 +24,15 @@ module DangerPopApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.active_record.belongs_to_required_by_default = false
-    config.middleware.insert_before 0, Rack::Cors do 
-      allow do 
-        origins '*'
-        resource '*', headers: :any, methods:[:get, :post, :patch, :delete]
-      end
-    end
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    # config.middleware.insert_before 0, Rack::Cors do 
+    #   allow do 
+    #     origins '*'
+    #     resource '*', headers: :any, methods:[:get, :post, :patch, :delete]
+    #   end
+    # end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

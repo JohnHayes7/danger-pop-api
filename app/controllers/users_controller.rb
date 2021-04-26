@@ -14,19 +14,20 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         # binding.pry
         if @user.save
+            login!
             # binding.pry
-            payload = {user_id: @user.id}
-            token = create_token(payload)
-            user_data ={
-                "id": @user.id,
-                "name": @user.name,
-                "email": @user.email,
-                "phone_number": @user.phone_number,
-                "token": token
-            }
+            # payload = {user_id: @user.id}
+            # token = create_token(payload)
+            # user_data ={
+            #     "id": @user.id,
+            #     "name": @user.name,
+            #     "email": @user.email,
+            #     "phone_number": @user.phone_number,
+            #     "token": token
+            # }
             # options = {include: [token]}
             # binding.pry
-            render json: user_data
+            render json: UserSerializer.new(@user)
         else
             # binding.pry
             render json: {code: 2020, message: "Could Not Create Account.  Please confirm your information"}
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
 
     def show
         u = User.find(params[:id])
-        
+
         render json: UserSerializer.new(u)
     end
 

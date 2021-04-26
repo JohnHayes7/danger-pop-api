@@ -1,42 +1,30 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
+    skip_before_action :verify_authenticity_token
 
-    before_action :authenticate
+    helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
 
-    def authenticate
-        # binding.pry
-        if request.headers["Authorization"]
-
-            begin
-                binding.pry
-                auth_header = request.headers["Authorization"]
-                
-                decoded_token = JWT.decode(token(auth_header), secret)
-        
-                payload = decoded_token.first
-                
-                user_id = payload["user_id"]
-                binding.pry
-                @user = User.find(user_id)
-                binding.pry
-            rescue => exception
-                render json: {message: "Error #{exception}"}, status: :forbidden
-            end
-        else
-            render json:{message: "No Authorization Header Sent", status: :forbidden}
-        end
+    def login!
+        session[:user_id] = @user.id
     end
 
-    def secret
-        secret = ENV['SECRET_KEY_BASE'] || Rails.application.secrets.secret_key_base
+    def logged_in?
+        !!session[:user_id]
     end
 
-    def token(auth_header)
-        auth_header.split(" ")[1]
+    def current_user
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
-    def create_token(payload)
-        JWT.encode(payload, secret)
+    def authorized_user?
+        @user == current_user
     end
+
+    def logout!
+        session.clear
+    end
+    
+
+
 
 
    
