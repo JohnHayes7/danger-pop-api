@@ -20,7 +20,6 @@ class SessionsController < ApplicationController
 
 
     def is_logged_in?
-        
         if logged_in? && current_user
           render json: {
             logged_in: true,
@@ -29,14 +28,14 @@ class SessionsController < ApplicationController
         else
           render json: {
             logged_in: false,
-            message: 'no such user'
+            message: 'no such user or you need to login'
           }
         end
     end
 
     def is_authorized_user?
+        
         user = User.find(params[:user_id][:id])
-        binding.pry
         if user == current_user
             render json: {
                 authorized: true
