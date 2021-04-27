@@ -15,18 +15,6 @@ class UsersController < ApplicationController
         # binding.pry
         if @user.save
             login!
-            # binding.pry
-            # payload = {user_id: @user.id}
-            # token = create_token(payload)
-            # user_data ={
-            #     "id": @user.id,
-            #     "name": @user.name,
-            #     "email": @user.email,
-            #     "phone_number": @user.phone_number,
-            #     "token": token
-            # }
-            # options = {include: [token]}
-            # binding.pry
             render json: UserSerializer.new(@user)
         else
             # binding.pry

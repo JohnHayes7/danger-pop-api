@@ -34,6 +34,20 @@ class SessionsController < ApplicationController
         end
     end
 
+    def is_authorized_user?
+        user = User.find(params[:user_id][:id])
+        binding.pry
+        if user == current_user
+            render json: {
+                authorized: true
+            }
+        else
+            render json:{
+                authorized: false
+            }
+        end
+    end
+
 
     def destroy
         logout!
