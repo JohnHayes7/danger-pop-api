@@ -56,6 +56,13 @@ class SessionsController < ApplicationController
         }
     end
 
+    def omniauth
+      @user = User.from_omniauth(auth)
+      @user.save
+      login!
+      render json: UserSerializer.new(@user)
+    end
+
     private
 
     def session_params

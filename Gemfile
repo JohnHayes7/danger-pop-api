@@ -42,7 +42,13 @@ gem 'devise'
 
 gem'jsonapi-rails'
 
-gem 'devise-jwt'
+gem 'omniauth'
+
+gem 'dotenv-rails'
+
+gem 'omniauth-google-oauth2'
+
+# gem 'devise-jwt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
