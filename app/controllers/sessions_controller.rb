@@ -69,4 +69,9 @@ class SessionsController < ApplicationController
         params.require(:user).permit(:username, :email, :password)
     end
 
+    def auth
+        binding.pry
+        request.env['omniauth.auth']
+    end
+
 end

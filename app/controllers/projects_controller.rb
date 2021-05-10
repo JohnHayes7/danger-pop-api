@@ -73,4 +73,11 @@ class ProjectsController < ApplicationController
         proj = Project.find(params[:id])
         render json: ProjectsSerializer.new(proj)
     end
+
+    def update
+       proj = Project.find (params[:id])
+       proj.title = params[:title]
+       proj.save
+       render json: ProjectsSerializer.new(proj)
+    end
 end
