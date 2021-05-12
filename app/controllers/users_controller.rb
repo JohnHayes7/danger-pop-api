@@ -28,10 +28,19 @@ class UsersController < ApplicationController
         render json: UserSerializer.new(u)
     end
 
+    def update
+        @u = User.find(params[:user][:id])
+       binding.pry
+        @u.update(:id_img_path => params[:user][:id_img_path])
+        
+        @u.save(:validate => false)
+        render json: UserSerializer.new(@u)
+    end
+
     private
     
     def user_params
-        params.require(:user).permit(:name, :email, :phone_number, :password)
+        params.require(:user).permit(:name, :email, :password, :id_img_path)
     end
 
 

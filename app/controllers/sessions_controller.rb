@@ -36,6 +36,7 @@ class SessionsController < ApplicationController
     def is_authorized_user?
         
         user = User.find(params[:user_id][:id])
+        
         if user == current_user
             render json: {
                 authorized: true
