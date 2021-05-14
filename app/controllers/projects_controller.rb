@@ -74,14 +74,21 @@ class ProjectsController < ApplicationController
         render json: ProjectsSerializer.new(proj)
     end
 
+
+
     def update
         proj = Project.find (params[:id])
         if params[:title]
             proj.title = params[:title]
         end
-        binding.pry
-        if params[:project-progress-image-location]
-            binding
+        
+        if params[:progressimagelocation]
+            
+            proj.progress_images << params[:progressimagelocation]
+        end
+        if params[:finalimagelocation]
+            
+            proj.final_images << params[:finalimagelocation]
         end
        proj.save
        render json: ProjectsSerializer.new(proj)

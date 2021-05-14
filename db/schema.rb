@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_183352) do
+ActiveRecord::Schema.define(version: 2021_05_14_192205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 2021_05_14_183352) do
 
   create_table "projects", force: :cascade do |t|
     t.integer "tattoo_request_id"
-    t.string "final_image"
     t.boolean "project_complete_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -143,6 +142,7 @@ ActiveRecord::Schema.define(version: 2021_05_14_183352) do
     t.integer "artist_id"
     t.integer "price"
     t.string "progress_images", default: [], array: true
+    t.string "final_images", default: [], array: true
   end
 
   create_table "sizes", force: :cascade do |t|
