@@ -15,6 +15,16 @@ class TattooRequestsController < ApplicationController
         end
     end
 
+    def update
+        tr = TattooRequest.find(params[:id])
+        tr.mockupImageLocation =  params[:mockupimagelocation]
+        tr.save(:validate => false)
+        render json: TattooRequestsSerializer.new(tr)
+    end
+
+
+
+
     private
 
     def tattoo_request_params
