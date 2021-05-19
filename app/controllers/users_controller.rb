@@ -1,9 +1,4 @@
-class UsersController < ApplicationController
-
-    # skip_before_action :authenticate, only:[:create]
-
-
-    
+class UsersController < ApplicationController    
     def index
         users = User.all
         render json: UserSerializer.new(users)
@@ -12,12 +7,10 @@ class UsersController < ApplicationController
     def create
        
         @user = User.new(user_params)
-        # binding.pry
         if @user.save
             login!
             render json: UserSerializer.new(@user)
         else
-            # binding.pry
             render json: {code: 2020, message: "Could Not Create Account.  Please confirm your information"}
         end
     end
@@ -30,9 +23,7 @@ class UsersController < ApplicationController
 
     def update
         @u = User.find(params[:user][:id])
-       binding.pry
         @u.update(:id_img_path => params[:user][:id_img_path])
-        
         @u.save(:validate => false)
         render json: UserSerializer.new(@u)
     end
