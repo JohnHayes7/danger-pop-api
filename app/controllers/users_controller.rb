@@ -9,6 +9,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             login!
+            UserMailer.welcome_email(@user).deliver_now
             render json: UserSerializer.new(@user)
         else
             render json: {code: 2020, message: "Could Not Create Account.  Please confirm your information"}
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
     private
     
     def user_params
-        params.require(:user).permit(:name, :email, :password, :id_img_path)
+        params.require(:user).permit(:name, :phone_number, :email, :password, :id_img_path)
     end
 
 
