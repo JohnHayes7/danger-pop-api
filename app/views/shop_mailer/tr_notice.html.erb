@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1> You have Received a New Tattoo Request - ID: <%=@tr.id %> </h1>
+    <p>
+      The request was submitted by <%= @tr.guest_email %>
+      Description is <%= @tr.description %>
+      You can find further information regarding this request in the admin portal
+    </p>
+  </body>
+</html>
