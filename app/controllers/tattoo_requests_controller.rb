@@ -9,6 +9,7 @@ class TattooRequestsController < ApplicationController
        
         @tr = TattooRequest.new(tattoo_request_params)
         if @tr.save
+            TattoorequestsentMailer.confirmation_email(@tr).deliver_now
             render json: @tr
         else
             render json: @tr.errors.full_messages
