@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
     def name_combine
         combined = ""
+        
         self.name.split(" ").each do |n|
             combined += n
         end

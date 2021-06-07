@@ -8,6 +8,7 @@ class TattooRequestsController < ApplicationController
     def create
        
         @tr = TattooRequest.new(tattoo_request_params)
+        binding.pry
         if @tr.save
             TattoorequestsentMailer.confirmation_email(@tr).deliver_now
             ShopMailer.tr_notice(@tr).deliver_now

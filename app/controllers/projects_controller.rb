@@ -6,14 +6,14 @@ class ProjectsController < ApplicationController
     end
 
     def create
+        
         @tr = TattooRequest.find(params[:id])
+       
         if params[:attributes][:accepted]
-            # binding.pry
-            # IF THERE IS A USER FIND THE USER
-            # IF THERE IS NOT A USER CREATE A USER
+           
             if !params[:attributes][:user]
                 @u = User.find_by(email: params[:attributes][:guest_email])
-                # binding.pry
+               
                 if !@u
 
                     @u = User.new()
@@ -27,25 +27,27 @@ class ProjectsController < ApplicationController
                     @u.administrator = false
                     @u.allergies = params[:attributes][:allergies]
                     @u.save
+                    
                 else
                     @u.tattoo_requests.push(@tr)
                     @u.tattoo_approved = @u.tattoo_approved || true 
                     @u.administrator = false
                     @u.allergies = params[:attributes][:allergies]
                     @u.save
+                    
                 end
             else
                 @u = User.find(params[:attributes][:user][:id])
-                # binding.pry
+                
                 @u.tattoo_requests.push(@tr)
                 @u.tattoo_approved = @u.tattoo_approved || true
                 @u.administrator = false
                 @u.allergies = params[:attributes][:allergies]
-                @u.save
+                @u.save(:validate => false)
                 
             end
         
-            if @u.save
+            if @u.save(:validate => false)
                 @tr.accepted = true
                 @tr.save
                 
@@ -53,9 +55,12 @@ class ProjectsController < ApplicationController
                 
                 proj.tattoo_request_id = params[:id]
                 proj.user_id = @u.id
+                
+               
+                proj.title = "#{@u.name_combine}_#{proj.id}"
+               
                 proj.save
-                proj.title = @u.name_combine +"_"+"#{proj.id}"
-                proj.save
+                
                 if proj.save
                     render json: ProjectsSerializer.new(proj)
                 else
