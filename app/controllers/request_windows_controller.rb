@@ -1,0 +1,2 @@
+class RequestWindowsController < ApplicationController
+end

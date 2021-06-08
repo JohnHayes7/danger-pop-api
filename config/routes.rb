@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :request_windows
   resources :project_notes
   resources :dimensions
   resources :sizes
