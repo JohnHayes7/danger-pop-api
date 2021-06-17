@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
                 proj.tattoo_request_id = params[:id]
                 proj.user_id = @u.id
                 
-               
+                # THIS WONT WORK...NO ID CREATED YET
                 proj.title = "#{@u.name_combine}_#{proj.id}"
                
                 proj.save

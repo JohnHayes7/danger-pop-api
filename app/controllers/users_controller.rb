@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     def create
        
         @user = User.new(user_params)
+        if @user.administrator
+            @user.name = "Please Add your Name"
+            @user.phone_number="Please add your Phone Number"
+        end
+        # binding.pry
         if @user.save
             login!
             UserMailer.welcome_email(@user).deliver_now
@@ -32,7 +37,7 @@ class UsersController < ApplicationController
     private
     
     def user_params
-        params.require(:user).permit(:name, :phone_number, :email, :password, :id_img_path)
+        params.require(:user).permit(:name, :phone_number, :email, :password, :id_img_path, :administrator)
     end
 
 
