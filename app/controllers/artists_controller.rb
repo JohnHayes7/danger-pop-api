@@ -7,8 +7,9 @@ class ArtistsController < ApplicationController
 
     def create
         artist = Artist.new(artist_params)
+        binding.pry
         if artist.save
-            render json ArtistsSerializer(artist)
+            render json: ArtistsSerializer.new(artist)
         else
             render json: {code: 2020, message: "Could Not Create Artist Account.  Please confirm your information"}
         end
