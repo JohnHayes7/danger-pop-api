@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_183448) do
+ActiveRecord::Schema.define(version: 2021_06_17_194811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_183448) do
     t.integer "price"
     t.string "progress_images", default: [], array: true
     t.string "final_images", default: [], array: true
+    t.boolean "backup_project"
   end
 
   create_table "request_windows", force: :cascade do |t|
