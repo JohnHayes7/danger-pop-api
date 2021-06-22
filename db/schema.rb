@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_194811) do
+ActiveRecord::Schema.define(version: 2021_06_17_200449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 2021_06_17_194811) do
     t.integer "price"
     t.string "progress_images", default: [], array: true
     t.string "final_images", default: [], array: true
-    t.boolean "backup_project"
   end
 
   create_table "request_windows", force: :cascade do |t|
@@ -186,6 +185,8 @@ ActiveRecord::Schema.define(version: 2021_06_17_194811) do
     t.string "guest_full_name"
     t.string "guest_phone"
     t.string "mockupImageLocation"
+    t.boolean "backup_project"
+    t.boolean "declined"
   end
 
   create_table "users", force: :cascade do |t|

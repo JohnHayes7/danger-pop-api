@@ -8,7 +8,7 @@ class TattooRequestsController < ApplicationController
     def create
        
         @tr = TattooRequest.new(tattoo_request_params)
-        binding.pry
+        # binding.pry
         if @tr.save
             TattoorequestsentMailer.confirmation_email(@tr).deliver_now
             ShopMailer.tr_notice(@tr).deliver_now
@@ -20,7 +20,9 @@ class TattooRequestsController < ApplicationController
 
     def update
         tr = TattooRequest.find(params[:id])
+       
         tr.mockupImageLocation =  params[:mockupimagelocation]
+        tr.backup_project = params[:attributes][:backup]
         tr.save(:validate => false)
         render json: TattooRequestsSerializer.new(tr)
     end
