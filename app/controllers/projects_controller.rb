@@ -49,6 +49,7 @@ class ProjectsController < ApplicationController
         
             if @u.save(:validate => false)
                 @tr.accepted = true
+                @tr.backup_project = false
                 @tr.save
                 
                 proj = Project.new()
