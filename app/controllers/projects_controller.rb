@@ -96,6 +96,25 @@ class ProjectsController < ApplicationController
             
             proj.final_images << params[:finalimagelocation]
         end
+
+        if params[:completed_status] 
+            proj.project_complete_status = params[:completed_status]
+        elsif params[:completed_status] == false
+            proj.project_complete_status = params[:completed_status]
+        else
+            proj.project_complete_status = proj.project_complete_status
+        end
+
+        if params[:deposit_received]
+            proj.deposit_received_status = params[:deposit_received]
+        elsif params[:deposit_received] == false
+            proj.deposit_received_status = params[:deposit_received]
+        else
+            proj.deposit_received = proj.deposit_received
+        end
+
+        # binding.pry
+
        proj.save
        render json: ProjectsSerializer.new(proj)
     end
