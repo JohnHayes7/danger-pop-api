@@ -21,12 +21,28 @@ class User < ApplicationRecord
     end
 
     def self.from_omniauth(auth)
-        binding.pry
+        # binding.pry
         where(email: auth.info.email).first_or_initialize do |user|
             user.user_name = auth.info.name
             user.email = auth.info.email
             user.password = SecureRandom.hex
         end
+    end
+
+    def generate_password_token!
+        self.reset_password_token = generate_token
+        self.reset_password_sent_at = Time.now.utc
+        save!
+    end
+       
+    def password_token_valid?
+        (self.reset_password_sent_at + 4.hours) > Time.now.utc
+    end
+       
+    def reset_password!(password)
+        self.reset_password_token = nil
+        self.password = password
+        save!
     end
 
     
