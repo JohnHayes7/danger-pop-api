@@ -92,6 +92,39 @@ Rails.application.configure do
 
   # NEED TO SET BELOW TO ACTUAL HOST NAME
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  Paperclip.options[:command_path] = "/usr/bin/"
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: 's3-us-east-1.amazonaws.com',
+    s3_credentials: {
+       bucket: ENV.fetch('S3_BUCKET_NAME'),
+       access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+       secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+       s3_region: ENV.fetch('AWS_REGION'),
+      }
+    }
+
+    config.action_mailer.delivery_method = :sendmail
+    # Defaults to:
+    # config.action_mailer.sendmail_settings = {
+    #   location: '/usr/sbin/sendmail',
+    #   arguments: '-i'
+    # }
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default_options = {from: 'WarwickCreativeServices@gmail.com'}
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'gmail.com',
+      user_name:            ENV.fetch('EMAIL_USER_NAME'),
+      password:             ENV.fetch('EMAIL_PASS'),
+      authentication:       'plain',
+      enable_starttls_auto: true  
+    }
+
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
