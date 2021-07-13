@@ -1,3 +1,5 @@
+require remote_pry
+
 class SessionsController < ApplicationController
 
     def create
