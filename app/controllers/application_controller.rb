@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
     def login!
         session[:user_id] = @user.id
-        binding.pry
+        binding.remote_pry
     end
 
     def logged_in?
