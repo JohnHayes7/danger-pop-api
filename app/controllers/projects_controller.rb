@@ -110,7 +110,7 @@ class ProjectsController < ApplicationController
         elsif params[:deposit_received] == false
             proj.deposit_received_status = params[:deposit_received]
         else
-            proj.deposit_received = proj.deposit_received
+            proj.deposit_received_status = proj.deposit_received_status
         end
 
         # binding.pry
