@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
     def login!
         session[:user_id] = @user.id
-        binding.pry
+        puts "#{session}"
     end
 
     def logged_in?
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        binding.pry
+        puts"#{session}"
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
