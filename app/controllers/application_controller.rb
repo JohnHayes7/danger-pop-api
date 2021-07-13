@@ -5,14 +5,17 @@ class ApplicationController < ActionController::Base
 
     def login!
         session[:user_id] = @user.id
-        binding.pry
+        
     end
 
     def logged_in?
+        binding.pry
+        puts session
         !!session[:user_id]
     end
 
     def current_user
+        binding.pry
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
