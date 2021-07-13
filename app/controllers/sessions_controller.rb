@@ -1,4 +1,4 @@
-require remote_pry
+
 
 class SessionsController < ApplicationController
 
