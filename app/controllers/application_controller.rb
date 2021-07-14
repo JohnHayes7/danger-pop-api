@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     end
 
     def logged_in?
+        puts "#{session}"
         !!session[:user_id]
     end
 
