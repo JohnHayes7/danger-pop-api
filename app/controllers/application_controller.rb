@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        puts "current_user_session: #{session[:user_id]}"
+        puts "current_user_session: #{session.to_hash}"
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
