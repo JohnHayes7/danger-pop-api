@@ -6,16 +6,16 @@ class ApplicationController < ActionController::Base
 
     def login!
         session[:user_id] = @user.id
-        puts "session: #{session}"
+        puts "session: #{session[:user_id]}"
     end
 
     def logged_in?
-        puts "session: #{session}"
+        puts "session: #{session[:user_id]}"
         !!session[:user_id]
     end
 
     def current_user
-        puts "session: #{session}"
+        puts "session: #{session[:user_id]}"
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
