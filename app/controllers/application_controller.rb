@@ -1,7 +1,8 @@
 # require remote_pry
 class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token
-
+    protect_from_forgery with: :exception
+#   include SessionsHelper
     helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
 
     def login!
