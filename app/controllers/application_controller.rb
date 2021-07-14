@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
 
     def login!
         session[:user_id] = @user.id
-        puts "login_session: #{session[:user_id]}"
+        puts "login_session: #{session.hash}"
     end
 
     def logged_in?
-        puts "logged_in_session: #{session[:user_id]}"
+        puts "logged_in_session: #{session.hash }"
         !!session[:user_id]
     end
 
