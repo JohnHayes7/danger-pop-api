@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         puts "user: #{@user.inspect}"
         puts "params: #{session_params.inspect}"
         puts "auth:#{@user.authenticate(session_params[:password])}"
-        puts "cookie #{cookie.inspect}"
+        # puts "cookie #{cookie.inspect} "
         if @user && @user.authenticate(session_params[:password])
             
           login!
