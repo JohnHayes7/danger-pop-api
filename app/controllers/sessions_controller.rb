@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
     def create
         @user = User.find_by(email: session_params[:email])
+        puts @user.to_hash
         if @user && @user.authenticate(session_params[:password])
             
           login!
@@ -72,7 +73,7 @@ class SessionsController < ApplicationController
     end
 
     def auth
-        binding.pry
+        
         request.env['omniauth.auth']
     end
 
