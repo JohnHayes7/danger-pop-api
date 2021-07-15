@@ -34,6 +34,8 @@ gem 'paperclip'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-ec2', '~> 1'
 
+gem 'rails_same_site_cookie', '~> 0.1.8'
+
 gem 'figaro'
 
 gem 'knock'
@@ -69,7 +71,7 @@ group :test do
 end
 
 group :production do 
-  gem 'pg', '~> 1.1'
+  # gem 'pg', '~> 1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
