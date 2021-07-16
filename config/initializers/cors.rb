@@ -19,10 +19,10 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       origins 'https://www.dangerpopstudio.com', 'http://localhost:3000'
     
       resource '*',
-      # headers:     %w[Authorization],
+      headers:     %w[Authorization],
       methods:     :any,
       credentials: true,
-      # expose:      %w[Authorization],
+      expose:      %w[Authorization],
       max_age:     600
     end
   end

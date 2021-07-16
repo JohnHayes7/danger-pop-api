@@ -29,12 +29,12 @@ module DangerPopApi
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
 
-    config.middleware.insert_before 0, Rack::Cors do 
-      allow do 
-        origins 'https://www.dangerpopstudio.com'
-        resource '*', headers: :any, methods:[:get, :post, :patch, :delete]
-      end
-    end
+    # config.middleware.insert_before 0, Rack::Cors do 
+    #   allow do 
+    #     origins 'https://www.dangerpopstudio.com'
+    #     resource '*', headers: :any, methods:[:get, :post, :patch, :delete]
+    #   end
+    # end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
