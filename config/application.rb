@@ -24,10 +24,10 @@ module DangerPopApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.active_record.belongs_to_required_by_default = false
-    Rails.application.config.action_dispatch.cookies_same_site_protection = :none
+    # config.action_dispatch.cookies_same_site_protection = :none
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
-    # config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
+    config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
 
     # config.middleware.insert_before 0, Rack::Cors do 
     #   allow do 
