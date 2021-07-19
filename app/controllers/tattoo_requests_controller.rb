@@ -20,9 +20,9 @@ class TattooRequestsController < ApplicationController
 
     def update
         tr = TattooRequest.find(params[:id])
-       
-        tr.mockupImageLocation =  params[:mockupimagelocation]
-        tr.backup_project = params[:attributes][:backup]
+        
+        params[:mockupImageLocation] ? tr.mockupImageLocation = params[:mockupimagelocation] : tr.mockupImageLocation
+        params[:attributes][:backup] ? tr.backup_project = params[:attributes][:backup]  : tr.backup_project
         tr.save(:validate => false)
         render json: TattooRequestsSerializer.new(tr)
     end
