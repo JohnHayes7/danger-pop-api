@@ -19,15 +19,16 @@ class TattooRequestsController < ApplicationController
     end
 
     def update
-        puts `params: #{params.to_hash}`
+        puts `params: #{tattoo_request_params}`
         tr = TattooRequest.find(params[:id])
-        puts `tattoo_request: #{tr}`
-        puts `params: #{params}`
-        !!params[:mockupImageLocation] ? tr.mockupImageLocation = params[:mockupimagelocation] : tr.mockupImageLocation
-        !!params[:attributes][:backup] ? tr.backup_project = params[:attributes][:backup]  : tr.backup_project
-        puts `#{tr}`
-        tr.save(:validate => false)
-        render json: TattooRequestsSerializer.new(tr)
+        # puts `tattoo_request: #{tr}`
+        # puts `params: #{params}`
+        # !!params[:mockupimagelocation] ? tr.mockupImageLocation = params[:mockupimagelocation] : tr.mockupImageLocation
+        # !!params[:attributes][:backup] ? tr.backup_project = params[:attributes][:backup]  : tr.backup_project
+        # puts `#{tr}`
+        # tr.save(:validate => false)
+        # render json: TattooRequestsSerializer.new(tr)
+        render json: tr.errors.full_messages
     end
 
 
