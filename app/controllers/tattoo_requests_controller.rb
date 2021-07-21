@@ -22,7 +22,7 @@ class TattooRequestsController < ApplicationController
         tr = TattooRequest.find(params[:id])
         
         # puts `params: #{params}`
-        tr.mockupImageLocation = params[:tattoo_request][:mockupimagelocation]
+        !!params[:tattoo_request][:mockupimagelocation] ? tr.mockupImageLocation = params[:tattoo_request][:mockupimagelocation] :tr.mockupImageLocation = tr.mockupImageLocation
         # !!params[:tattoo_request][:mockupimagelocation] ? tr.mockupImageLocation = params[:mockupimagelocation] : tr.mockupImageLocation
         # !!params[:attributes][:backup] ? tr.backup_project = params[:attributes][:backup]  : tr.backup_project
         # puts `#{tr}`
