@@ -19,6 +19,7 @@ class TattooRequestsController < ApplicationController
     end
 
     def update
+        puts `params: #{params.to_hash}`
         tr = TattooRequest.find(params[:id])
         puts `tattoo_request: #{tr}`
         puts `params: #{params}`
