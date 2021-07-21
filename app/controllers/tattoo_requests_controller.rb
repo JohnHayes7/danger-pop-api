@@ -19,7 +19,8 @@ class TattooRequestsController < ApplicationController
     end
 
     def update
-        puts `params: #{tattoo_request_params}`
+        puts `tr_params: #{tattoo_request_params}`
+        puts `params: #{params}`
         tr = TattooRequest.find(params[:id])
         puts `tattoo_request: #{tr}`
         # puts `params: #{params}`
