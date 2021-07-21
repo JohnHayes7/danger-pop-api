@@ -29,7 +29,7 @@ class TattooRequestsController < ApplicationController
         # puts `#{tr}`
         # tr.save(:validate => false)
         # render json: TattooRequestsSerializer.new(tr)
-        render json: tr.errors.full_messages
+        render json: tr
     end
 
 
