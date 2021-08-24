@@ -13,11 +13,12 @@ class UsersController < ApplicationController
         end
         # binding.pry
         if @user.save
-            login!
+            payload = {user_id: @user.id}
+            token = encode_token(payload)
             UserMailer.welcome_email(@user).deliver_now
-            render json: UserSerializer.new(@user)
+            render json: {user: @user, jwt: token}
         else
-            render json: {code: 2020, message: "Could Not Create Account.  Please confirm your information"}
+            render json: {errors: user.errors.full_messages}, status: not_acceptable
         end
     end
 

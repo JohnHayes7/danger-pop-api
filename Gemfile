@@ -42,6 +42,8 @@ gem 'knock'
 
 gem 'devise'
 
+gem 'jwt'
+
 gem'jsonapi-rails'
 
 gem 'omniauth'

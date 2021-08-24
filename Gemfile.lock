@@ -303,6 +303,7 @@ DEPENDENCIES
   fast_jsonapi
   figaro
   jsonapi-rails
+  jwt
   knock
   listen (~> 3.3)
   mimemagic!

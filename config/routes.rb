@@ -15,12 +15,17 @@ Rails.application.routes.draw do
   resources :carts
   resources :users
 
-  post '/login', to: 'sessions#create'
+  # post '/login', to: 'sessions#create'
+  post '/login', to: 'auth#login'
+  get '/auto_login', to: "auth#auto_login"
+  get '/user_is_authed', to: 'auth#user_is_authed'
   delete '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?'
   post '/authorized', to: 'sessions#is_authorized_user?'
   post '/password/forgot', to: 'password#forget'
   post '/password/reset', to: 'password#reset'
+
+  
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'
   # get '/logout', to: 'sessions#destroy'
