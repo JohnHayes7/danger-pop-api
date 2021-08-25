@@ -7,7 +7,6 @@ class ArtistsController < ApplicationController
 
     def create
         artist = Artist.new(artist_params)
-        binding.pry
         if artist.save
             render json: ArtistsSerializer.new(artist)
         else

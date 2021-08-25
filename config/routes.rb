@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/auto_login', to: "auth#auto_login"
   get '/user_is_authed', to: 'auth#user_is_authed'
   delete '/logout', to: 'sessions#destroy'
-  get '/logged_in', to: 'sessions#is_logged_in?'
+  get '/logged_in', to: 'application#is_logged_in?'
   post '/authorized', to: 'auth#is_authorized_user?'
   post '/password/forgot', to: 'password#forget'
   post '/password/reset', to: 'password#reset'

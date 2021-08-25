@@ -11,7 +11,6 @@ class UsersController < ApplicationController
             @user.name = "Please Add your Name"
             @user.phone_number="Please add your Phone Number"
         end
-        # binding.pry
         if @user.save
             payload = {user_id: @user.id}
             token = encode_token(payload)

@@ -112,9 +112,6 @@ class ProjectsController < ApplicationController
         else
             proj.deposit_received_status = proj.deposit_received_status
         end
-
-        # binding.pry
-
        proj.save
        render json: ProjectsSerializer.new(proj)
     end

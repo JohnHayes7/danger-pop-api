@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
         !!session_user
     end
 
+    def is_logged_in?
+        if logged_in?
+            render json: {logged_in: true }
+        else
+            render json: {logged_in: false}
+        end
+    end
+
     def current_user
         puts "current_user_session: #{session.to_hash}"
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -52,7 +60,6 @@ class ApplicationController < ActionController::Base
         
     def session_user
         decoded_hash = decoded_token
-        
         if !decoded_hash.empty? 
             puts decoded_hash.class
             user_id = decoded_hash[0]['user_id']
