@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/logged_in', to: 'application#is_logged_in?'
   post '/authorized', to: 'auth#is_authorized_user?'
-  post '/password/forgot', to: 'password#forget'
-  post '/password/reset', to: 'password#reset'
+  post '/password/forgot', to: 'passwords#forgot'
+  post '/password/reset', to: 'passwords#reset'
 
   
 
