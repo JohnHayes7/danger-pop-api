@@ -1,13 +1,13 @@
 class PasswordsController < ApplicationController
 
     def forgot
-        binding.pry
+        
         if params[:email].blank? 
             render json: {error: 'Email not present'}
         end
 
         user = User.find_by(email: params[:email]) # if present find user by email
-        binding.pry
+        
         if user.present?
             user.generate_password_token! #generate pass token
             UserMailer.forgot_password(user).deliver_now
@@ -18,18 +18,18 @@ class PasswordsController < ApplicationController
     end
 
     def reset
-        binding.pry
+        
         token = params[:token].to_s
-        binding.pry
+        
         if params[:email].blank?
           return render json: {error: 'Token not present'}
         end
         user = User.find_by(reset_password_token: token)
-        binding.pry
+        
         if user.present? && user.password_token_valid?
-            binding.pry
+            
           if user.reset_password!(params[:password])
-            binding.pry
+            
             render json: {status: 'ok'}, status: :ok
           else
             render json: {error: user.errors.full_messages}, status: :unprocessable_entity

@@ -8,7 +8,6 @@ class UserMailer < ApplicationMailer
 
     def forgot_password(user)
         @user = user
-        binding.pry
         mail(to: @user.email, subject: "Danger Pop Password Reset")
     end
 
