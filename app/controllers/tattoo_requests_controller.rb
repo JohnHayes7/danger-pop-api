@@ -21,6 +21,7 @@ class TattooRequestsController < ApplicationController
         tr = TattooRequest.find(params[:id])
         !!params[:tattoo_request][:mockupimagelocation] ? tr.mockupImageLocation = params[:tattoo_request][:mockupimagelocation] :tr.mockupImageLocation = tr.mockupImageLocation
         !!params[:tattoo_request][:backup] ? tr.backup_project = params[:tattoo_request][:backup] : tr.backup_project = tr.backup_project
+        !!params[:tattoo_request][:declined] ? tr.declined = params[:tattoo_request][:declined] : tr.declined = tr.declined
         tr.save(:validate => false)
         render json: TattooRequestsSerializer.new(tr)
     end
