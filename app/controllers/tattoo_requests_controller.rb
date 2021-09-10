@@ -19,9 +19,19 @@ class TattooRequestsController < ApplicationController
 
     def update
         tr = TattooRequest.find(params[:id])
+        binding.pry\
+        # WHAT HAPPENS IF I DECLINE A BACKUP PROJECT
+        
         !!params[:tattoo_request][:mockupimagelocation] ? tr.mockupImageLocation = params[:tattoo_request][:mockupimagelocation] :tr.mockupImageLocation = tr.mockupImageLocation
         !!params[:tattoo_request][:backup] ? tr.backup_project = params[:tattoo_request][:backup] : tr.backup_project = tr.backup_project
-        !!params[:tattoo_request][:declined] ? tr.declined = params[:tattoo_request][:declined] : tr.declined = tr.declined
+        # !!params[:tattoo_request][:declined] ? tr.declined = params[:tattoo_request][:declined] : tr.declined = tr.declined
+        if params[:tattoo_request][:declined]
+            tr.declined = params[:tattoo_request][:declined]
+            # NEED TO ADD A REQUEST DECLINED REASON TO TRs
+            # THEN MAIL USER
+            
+
+        end
         tr.save(:validate => false)
         render json: TattooRequestsSerializer.new(tr)
     end

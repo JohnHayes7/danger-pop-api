@@ -7,4 +7,9 @@ class TattoorequestsentMailer < ApplicationMailer
         mail(to: @tr.guest_email, subject: 'Danger Pop Studio Tattoo-Request')
     end
 
+    def declined_email(tr)
+        @tr = tr
+        mail(to:@tr.guest_email, subject: 'Danger Pop Studio Tattoo-Request')
+    end
+
 end
