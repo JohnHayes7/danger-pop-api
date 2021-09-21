@@ -11,4 +11,9 @@ class UserMailer < ApplicationMailer
         mail(to: @user.email, subject: "Danger Pop Password Reset")
     end
 
+    def welcome_email_auto(user)
+        @user = user
+        mail(to: @user.email, subject: "Welcome to Danger Pop!")
+    end
+
 end

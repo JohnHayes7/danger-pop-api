@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1> Welcome To Danger Pop Studio! </h1>
+    <p>Congrats!  We have accepted your tattoo request.</p>
+    <p>
+        We have created a profile on your behalf at YardleyTattoo.com <br>
+        Through our app you can track the progress of this project and any future projects.
+    </p>
+
+    <p>
+        You have successfully created an account with Danger Pop.
+        Your username is: <%= @user.email %> <br> 
+        Your password is: <%= @user.temp_password %> <br>
+        You will be prompted to change your password upon your inital login
+    </p>
+
+    <p>Thank You for your support!!</p>
+  </body>
+</html>

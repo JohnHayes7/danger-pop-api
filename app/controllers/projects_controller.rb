@@ -21,12 +21,16 @@ class ProjectsController < ApplicationController
                     @u.name = params[:attributes][:guest_full_name]
                     @u.phone_number = params[:attributes][:guest_phone]
                     # NEED TO ASSIGN RANDOM GENTERATED PASS
-                    @u.password = "pass"
+                    random = SecureRandom.hex
+                    @u.password = random
+                    @u.temp_password = random
                     @u.tattoo_requests.push(@tr)
                     @u.tattoo_approved = true
                     @u.administrator = false
                     @u.allergies = params[:attributes][:allergies]
                     @u.save
+                    UserMailer.welcome_email_auto(@u).deliver_now
+                    
                     
                 else
                     @u.tattoo_requests.push(@tr)
@@ -57,7 +61,7 @@ class ProjectsController < ApplicationController
                 proj.tattoo_request_id = params[:id]
                 proj.user_id = @u.id
                 
-                # THIS WONT WORK...NO ID CREATED YET
+                
                 proj.title = "#{@u.name_combine}_#{proj.id}"
                
                 proj.save

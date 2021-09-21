@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     end
 
     def update
+        binding.pry
         @u = User.find(params[:user][:id])
         @u.update(:id_img_path => params[:user][:id_img_path])
         @u.save(:validate => false)
