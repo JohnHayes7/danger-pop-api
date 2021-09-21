@@ -23,11 +23,13 @@ class ProjectsController < ApplicationController
                     # NEED TO ASSIGN RANDOM GENTERATED PASS
                     random = SecureRandom.hex
                     @u.password = random
-                    @u.temp_password = random
+                    @u.temp = random
                     @u.tattoo_requests.push(@tr)
                     @u.tattoo_approved = true
                     @u.administrator = false
                     @u.allergies = params[:attributes][:allergies]
+                    @u.account_creation_method = 'auto'
+                    @u.inital_login =  true
                     @u.save
                     UserMailer.welcome_email_auto(@u).deliver_now
                     
@@ -46,6 +48,7 @@ class ProjectsController < ApplicationController
                 @u.tattoo_requests.push(@tr)
                 @u.tattoo_approved = @u.tattoo_approved || true
                 @u.administrator = false
+                @u.inital_login = false
                 @u.allergies = params[:attributes][:allergies]
                 @u.save(:validate => false)
                 
@@ -61,7 +64,7 @@ class ProjectsController < ApplicationController
                 proj.tattoo_request_id = params[:id]
                 proj.user_id = @u.id
                 
-                
+                proj.save
                 proj.title = "#{@u.name_combine}_#{proj.id}"
                
                 proj.save
