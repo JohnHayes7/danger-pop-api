@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post '/authorized', to: 'auth#is_authorized_user?'
   post '/password/forgot', to: 'passwords#forgot'
   post '/password/reset', to: 'passwords#reset'
+  put '/password/user_set', to: 'passwords#user_set'
 
   
 
