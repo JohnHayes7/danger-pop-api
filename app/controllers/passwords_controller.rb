@@ -20,10 +20,26 @@ class PasswordsController < ApplicationController
     def user_set
       user = User.find_by(email: params[:email])
       user.password = params[:password]
-      user.inital_login = false
       user.save
-      render json: UserSerializer.new(user)
+      set_and_login
+      # render json: {status: 'success', message: 'You have successfully updated your password and will be redirected to lo'}
 
+    end
+
+    def set_and_login
+      
+      user = User.find_by(email: params[:email])
+      
+      if user && user.authenticate(params[:password])
+          
+          user.inital_login = false
+          user.save(:validate => false)
+          payload = {user_id: user.id}
+          token = encode_token(payload)
+          render json: {user: user, jwt: token}
+      else
+          render json: {failure: "Log in failed! Username or password invalid!"}
+      end
     end
 
     def reset
