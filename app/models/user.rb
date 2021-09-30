@@ -1,7 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
+    # before_validation :downcase_email
     validates :name,  presence: true
-    validates :email, presence: true, uniqueness: true
+    validates :email, presence: true, uniqueness: true  
     # ADD MORE RESTRICTIONS TO PASSWORD
     validates :password, presence: true
     has_one :cart
@@ -19,6 +20,10 @@ class User < ApplicationRecord
         end
         combined
     end
+
+    # def downcase_email
+    #     self.email = email.downcase if email.present?
+    # end
 
     def self.from_omniauth(auth)
         where(email: auth.info.email).first_or_initialize do |user|
