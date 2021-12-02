@@ -91,6 +91,7 @@ class ProjectsController < ApplicationController
 
     def update
         proj = Project.find (params[:id])
+        
         if params[:title]
             proj.title = params[:title]
         end
@@ -99,6 +100,7 @@ class ProjectsController < ApplicationController
             
             proj.progress_images << params[:progressimagelocation]
         end
+
         if params[:finalimagelocation]
             
             proj.final_images << params[:finalimagelocation]
@@ -118,6 +120,10 @@ class ProjectsController < ApplicationController
             proj.deposit_received_status = params[:deposit_received]
         else
             proj.deposit_received_status = proj.deposit_received_status
+        end
+
+        if params[:updated_price]
+            proj.price = params[:updated_price]
         end
        proj.save
        render json: ProjectsSerializer.new(proj)
